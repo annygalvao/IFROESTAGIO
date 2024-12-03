@@ -1,5 +1,5 @@
 from abc import ABC
-lll
+
 
 class Usuario(ABC):
     def __init__(self, nome : str, senha : str, area : str, periodo: str):
