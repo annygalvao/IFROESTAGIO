@@ -2,7 +2,7 @@
 # Turma: 2°A Informática matutino
 
 from Acesso import logon, cadastro
-from Classes import Empresa, Aluno, DepEx, Orientador
+from Classes import Empresa, Aluno, DepEx, Orientador ll
 
 # Inicialização da lista DB com instâncias corretas
 DB = [
