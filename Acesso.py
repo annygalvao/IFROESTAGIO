@@ -1,4 +1,4 @@
-from Classes import Aluno, Empresa oioio
+from Classes import Aluno, Empresa 
 
 
 def cadastro(lista):
