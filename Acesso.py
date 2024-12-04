@@ -4,7 +4,7 @@ from Classes import Aluno, Empresa
 def cadastro(lista):
     print('''Qual seu tipo de usuário:
 1 - Aluno
-2 - Empresa''')
+2 - Empresa''')aaaaaa
 
     escolha = input('R: ').strip()
 
