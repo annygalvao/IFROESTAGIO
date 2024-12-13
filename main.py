@@ -54,6 +54,7 @@ Menu Principal (digite o número da ação)
         aluno = next((a for a in DB if isinstance(a, Aluno) and a.get_nome() == aluno_nome), None)
         if aluno:
             print('''
+            
 Ações do Aluno
 --------------
 1 - Enviar Relatório ao Orientador
