@@ -5,6 +5,7 @@ from Acesso import logon, cadastro
 from Classes import Empresa, Aluno, DepEx, Orientador
 
 # Inicialização da lista DB com instâncias corretas
+
 DB = [
     Empresa('LuminaEletro', 'iluminatudo', 'eletrotécnica', 'tarde', '3000', 202401, 202412, 20, 123456789, "Carlos", 11987654321, "Engenheiro"),
     Empresa('SublimeVolt', 'senhatop', 'eletrotécnica', 'manhã', '3500', 202401, 202412, 20, 987654321, "Maria", 11912345678, "Engenheira"),
@@ -21,6 +22,7 @@ DB = [
 ]
 
 # Instâncias adicionais
+
 depex = DepEx("Coordenação de Extensão", "Chefe de Extensão", 11987651234, "depex@ifro.edu.br")
 orientador = Orientador("Dr. João", "Informática", 11912344321)
 
@@ -72,6 +74,7 @@ Ações do Aluno
         empresa = next((e for e in DB if isinstance(e, Empresa) and e.get_nome() == empresa_nome), None)
         if empresa:
             print('''
+
 Ações da Empresa
 ----------------
 1 - Ver informações da Empresa
@@ -91,6 +94,7 @@ Ações da Empresa
 
     elif choice == '5' and Permission:
         print('''
+        
 Ações do DepEx
 --------------
 1 - Fornecer Formulário
@@ -109,6 +113,7 @@ Ações do DepEx
 
     elif choice == '6' and Permission:
         print('''
+        
 Ações do Orientador
 -------------------
 1 - Avaliar Relatório de Aluno
