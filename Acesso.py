@@ -24,6 +24,8 @@ Nome, Senha, Área, Período, Dias Disponíveis, anoEscolar, idade, contato:''')
         aluno_obj = Aluno(nome, senha, area, periodo, diasdisponiveis,anoEscolar,idade,contato)
         print(f"\nCadastro realizado: {aluno_obj.get_info()}")
         lista.append(aluno_obj)
+except ValueError: 
+ print("Verifique se você inseriu valores validos para anoEscolar e Idade.")
 
     elif '2' in escolha or 'EMPRESA' in escolha.upper():
         print('''\nEscreva suas informações NESSA ORDEM:
