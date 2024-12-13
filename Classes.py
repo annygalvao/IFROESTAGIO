@@ -63,7 +63,7 @@ class Aluno(Usuario):
     def get_info(self):
         return self._nome,self._area,self._periodo,self.diasdisponiveis,self.anoEscolar,self.idade,self.contato
     
-    # dependencia, aluno depende do orientador para receber nota de seu relatorio
+    # dependencia, aluno depende do seu orientador para receber sua nota
     def enviarRelatorio(self, orientadorNome):
         relatorio = input('''Escreva aqui seu relatório:
 ''')
@@ -210,7 +210,8 @@ class Supervisor:
             print('termo assinado')
         else:
             print('termo não assinado')
-#empresa esta herdando da Classe usuario
+            
+#empresa está herdando da Classe usuario
 class Empresa(Usuario):
     def __init__(self, nome, senha, area, periodo, salario, data_inicial: int, data_final: int, carga_horaria: int, cnpj: int, supervisor_nome, supervisor_contato, supervisor_cargo):
         super().__init__(nome, senha, area, periodo)
