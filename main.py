@@ -1,6 +1,5 @@
 # Integrantes: Aryela Freitas Souza, Anny Maria Almeida Galvão, Livia Gabrielle Ambrosio Dias e Thayná Guarati de Oliveira
 # Turma: 2°A Informática matutino
-
 from Acesso import logon, cadastro
 from Classes import Empresa, Aluno, DepEx, Orientador
 
@@ -28,8 +27,14 @@ planoDeAtividade = []
 
 Permission = False
 
+# Exceção personalizada
+class AlunoNaoEncontradoError(Exception):
+    def __init__(self, nome):
+        super().__init__(f"Aluno {nome} não encontrado no sistema.")
+        self.nome = nome
+
 while True:
-    print('''
+    print(''' 
 Menu Principal (digite o número da ação)
 --------------
 1 - Cadastro
@@ -44,86 +49,133 @@ Menu Principal (digite o número da ação)
     choice = input('Escolha uma opção: ').strip()
 
     if choice == '1':
-        cadastro(DB)
+        try:
+            cadastro(DB)
+        except Exception as e:
+            print(f"Erro ao realizar cadastro: {e}")
+        finally:
+            print("Cadastro processado.")
+
     elif choice == '2':
-        Permission = logon(DB)
-    elif choice == '3' and Permission:
-        aluno_nome = input("Digite o nome do aluno: ")
-        aluno = next((a for a in DB if isinstance(a, Aluno) and a.get_nome() == aluno_nome), None)
-        if aluno:
-            print('''
+        try:
+            Permission = logon(DB)
+        except Exception as e:
+            print(f"Erro ao realizar login: {e}")
+        finally:
+            print("Login processado.")
+
+    elif choice == '3':
+        if Permission:
+            aluno_nome = input("Digite o nome do aluno: ")
+            try:
+                aluno = next((a for a in DB if isinstance(a, Aluno) and a.get_nome() == aluno_nome), None)
+                if not aluno:
+                    raise AlunoNaoEncontradoError(aluno_nome)
+                print(''' 
 Ações do Aluno
 --------------
 1 - Enviar Relatório ao Orientador
 2 - Solicitar Tutorial ao DepEx
-            ''')
-            aluno_action = input("Escolha uma ação: ")
-            if aluno_action == '1':
-                aluno.enviarRelatorio(orientador)
-            elif aluno_action == '2':
-                aluno.solicitarTutorial(depex)
-            else:
-                print("Opção inválida.")
+                ''')
+                aluno_action = input("Escolha uma ação: ")
+                if aluno_action == '1':
+                    aluno.enviarRelatorio(orientador)
+                elif aluno_action == '2':
+                    aluno.solicitarTutorial(depex)
+                else:
+                    print("Opção inválida.")
+            except AlunoNaoEncontradoError as e:
+                print(f"Erro: {e}")
+            except Exception as e:
+                print(f"Erro desconhecido: {e}")
+            finally:
+                print("Processo de ações do aluno finalizado.")
         else:
-            print("Aluno não encontrado.")
-    
-    elif choice == '4' and Permission:
-        empresa_nome = input("Digite o nome da empresa: ")
-        empresa = next((e for e in DB if isinstance(e, Empresa) and e.get_nome() == empresa_nome), None)
-        if empresa:
-            print('''
+            print("\nPor favor, faça login primeiro.")
+
+    elif choice == '4':
+        if Permission:
+            empresa_nome = input("Digite o nome da empresa: ")
+            try:
+                empresa = next((e for e in DB if isinstance(e, Empresa) and e.get_nome() == empresa_nome), None)
+                if not empresa:
+                    raise ValueError(f"Empresa {empresa_nome} não encontrada.")
+                print(''' 
 Ações da Empresa
 ----------------
 1 - Ver informações da Empresa
 2 - Criar nova Senha
-            ''')
-            empresa_action = input("Escolha uma ação: ")
-            if empresa_action == '1':
-                print(empresa.get_info())
-            elif empresa_action == '2':
-                nova_senha = input("Digite a nova senha: ")
-                empresa.criar_senha(nova_senha)
-                print("Senha atualizada com sucesso!")
-            else:
-                print("Opção inválida.")
+                ''')
+                empresa_action = input("Escolha uma ação: ")
+                if empresa_action == '1':
+                    print(empresa.get_info())
+                elif empresa_action == '2':
+                    nova_senha = input("Digite a nova senha: ")
+                    empresa.criar_senha(nova_senha)
+                    print("Senha atualizada com sucesso!")
+                else:
+                    print("Opção inválida.")
+            except ValueError as e:
+                print(f"Erro: {e}")
+            except Exception as e:
+                print(f"Erro desconhecido: {e}")
+            finally:
+                print("Processo de ações da empresa finalizado.")
         else:
-            print("Empresa não encontrada.")
+            print("\nPor favor, faça login primeiro.")
 
-    elif choice == '5' and Permission:
-        print('''
+    elif choice == '5':
+        if Permission:
+            try:
+                print(''' 
 Ações do DepEx
 --------------
 1 - Fornecer Formulário
 2 - Lançar Termo de Compromisso
 3 - Criar Plano de Trabalho
-        ''')
-        depex_action = input("Escolha uma ação: ")
-        if depex_action == '1':
-            depex.fornecer_formulario()
-        elif depex_action == '2':
-            depex.lancar_termo_de_compromisso()
-        elif depex_action == '3':
-            depex.criar_plano_de_trabalho(planoDeAtividade)
+                ''')
+                depex_action = input("Escolha uma ação: ")
+                if depex_action == '1':
+                    depex.fornecer_formulario()
+                elif depex_action == '2':
+                    depex.lancar_termo_de_compromisso()
+                elif depex_action == '3':
+                    depex.criar_plano_de_trabalho(planoDeAtividade)
+                else:
+                    print("Opção inválida.")
+            except Exception as e:
+                print(f"Erro ao realizar ação do DepEx: {e}")
+            finally:
+                print("Processo de ações do DepEx finalizado.")
         else:
-            print("Opção inválida.")
+            print("\nPor favor, faça login primeiro.")
 
-    elif choice == '6' and Permission:
-        print('''
+    elif choice == '6':
+        if Permission:
+            try:
+                print(''' 
 Ações do Orientador
 -------------------
 1 - Avaliar Relatório de Aluno
 2 - Assinar Termo de Compromisso
-        ''')
-        orientador_action = input("Escolha uma ação: ")
-        if orientador_action == '1':
-            orientador.avaliar_relatorio()
-        elif orientador_action == '2':
-            orientador.assinar_termo()
+                ''')
+                orientador_action = input("Escolha uma ação: ")
+                if orientador_action == '1':
+                    orientador.avaliar_relatorio()
+                elif orientador_action == '2':
+                    orientador.assinar_termo()
+                else:
+                    print("Opção inválida.")
+            except Exception as e:
+                print(f"Erro ao realizar ação do Orientador: {e}")
+            finally:
+                print("Processo de ações do Orientador finalizado.")
         else:
-            print("Opção inválida.")
+            print("\nPor favor, faça login primeiro.")
 
-    elif choice == '7' and Permission:
+    elif choice == '7':
         print("Saindo do sistema. Obrigado!")
         break
+
     else:
-        print("\nfaça Login primeiro1")
+        print("\nOpção inválida. Tente novamente.")
