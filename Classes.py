@@ -79,9 +79,6 @@ quando estiver fervendo coloque o miojo e espere cozinhar por 3 minutos, retire 
         else:
             print('tutorial não liberado')
 
-    def adicionarOrientador(self, orientador):
-        self.orientador= orientador   
-
 class Orientador:
     def __init__(self, nome: str, disciplina: str, contato: int):
         self.nome = nome
@@ -147,7 +144,7 @@ class DepEx(Coordenacao):
         super().__init__(setor, chefe_do_setor)
         self.contato = contato
         self.email = email
-        self.estagiarios = []#objeto do tipo estagiário
+        self.estagiarios = []
 
     def criar_plano_de_trabalho(self,lista):
         plano = input('''Escreva aqui seu plano:
@@ -210,7 +207,7 @@ class Supervisor:
             print('termo assinado')
         else:
             print('termo não assinado')
-#empresa esta herdando da Classe usuario
+
 class Empresa(Usuario):
     def __init__(self, nome, senha, area, periodo, salario, data_inicial: int, data_final: int, carga_horaria: int, cnpj: int, supervisor_nome, supervisor_contato, supervisor_cargo):
         super().__init__(nome, senha, area, periodo)
@@ -231,3 +228,4 @@ class Empresa(Usuario):
 
     def adicionar_nome(self, nome):
         self.set_nome(nome)
+
