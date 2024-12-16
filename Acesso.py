@@ -1,4 +1,4 @@
-from Classes import Aluno, Empresa 
+from Classes import Aluno, Empresa
 
 
 def cadastro(lista):
@@ -11,7 +11,7 @@ def cadastro(lista):
     if '1' in escolha or 'ALUNO' in escolha.upper():
         print('''\nEscreva suas informações NESSA ORDEM:
 Nome, Senha, Área, Período, Dias Disponíveis, anoEscolar, idade, contato:''')
-
+    
         nome = input('Nome: ').strip()
         senha = input('Senha: ').strip()
         area = input('Área: ').strip()
@@ -19,7 +19,20 @@ Nome, Senha, Área, Período, Dias Disponíveis, anoEscolar, idade, contato:''')
         diasdisponiveis = input('Dias Disponíveis: ').strip()
         anoEscolar = input('Ano escolar: ').strip()
         idade = input('Idade: ').strip()
-        contato = input('Contato: ').strip()
+        try:
+            idade = int(input('idade: '))
+        except ValueError:
+            print ("Insira um número inteiro válido para idade.")
+            return
+        finally:
+            print ("Fim do 'try except'. ") 
+        try:
+            contato = int(input('contato: '))
+        except ValueError:
+            print ("Insira um número de contato válido.")
+            return
+        finally:
+            print ("Fim do 'try except'. ") 
 
         aluno_obj = Aluno(nome, senha, area, periodo, diasdisponiveis,anoEscolar,idade,contato)
         print(f"\nCadastro realizado: {aluno_obj.get_info()}")
@@ -28,14 +41,27 @@ Nome, Senha, Área, Período, Dias Disponíveis, anoEscolar, idade, contato:''')
     elif '2' in escolha or 'EMPRESA' in escolha.upper():
         print('''\nEscreva suas informações NESSA ORDEM:
 Nome, Senha, Área, Período, Salário, Carga horária, CNPJ e as info do seu Supervisor:''')
-
+        
         nome = input('Nome: ').strip()
         senha = input('Senha: ').strip()
         area = input('Área: ').strip()
         periodo = input('Período: ').strip()
-        salario = input('Salário: ').strip()
-        cargaHoraria = input('Carga hóraria: ').strip()
-        cnpj = input('CNPJ: ').strip()
+        try:
+            salario = int(input('Salário: '))
+        except ValueError:
+                print ("Insira um número inteiro válido para o Salário.")
+                return
+
+        try:
+            cargaHoraria = int(input('Carga horária: '))
+        except ValueError:
+                print ("Insira um número inteiro válido para a Carga horária.")
+                return
+        try:
+            cnpj = int(input('CNPJ: '))
+        except ValueError:
+                print ("Insira um número inteiro válido para o CNPJ.")
+                return             
         Snome = input('Supervisor nome: ').strip()
         Scontato = input('Supervisor contato: ').strip()
         Scargo = input('Supervisor carg: ').strip()
