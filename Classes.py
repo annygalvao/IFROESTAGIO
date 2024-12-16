@@ -1,4 +1,4 @@
-# Exceção personalizada
+#exceção 
 class InvalidInputError(Exception):
     def __init__(self, message):
         self.message = message
@@ -48,7 +48,7 @@ class Aluno(Usuario):
         self.contato = contato
         self.orientador = None
 
-    # Exemplo de um método com exceção
+    #método com exceção
     def adicionarNomeAluno(self):
         try:
             nome = input("Digite o nome do aluno: ").strip()
