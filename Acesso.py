@@ -13,19 +13,34 @@ def cadastro(lista):
 Nome, Senha, Área, Período, Dias Disponíveis, anoEscolar, idade, contato:''')
 
         nome = input('Nome: ').strip()
-        senha = input('Senha: ').strip()
+
+        #validação de senha
+        try:
+            senha = int(input('Senha: '))
+        except ValueError:
+            print("Erro, insira numeros inteiros")
+            return
+        finally:
+            print("Fim do try exception, continue")
+
         area = input('Área: ').strip()
         periodo = input('Período: ').strip()
         diasdisponiveis = input('Dias Disponíveis: ').strip()
         anoEscolar = input('Ano escolar: ').strip()
         idade = input('Idade: ').strip()
-        contato = input('Contato: ').strip()
+
+        #validação de contato 
+        try:
+            contato = int(input('Contato: '))
+        except ValueError:
+            print ("Erro, insira no máximo oito dígitos numéricos")
+            return
+        finally:
+            print("EEE, é o fim do try except!! Continue")
 
         aluno_obj = Aluno(nome, senha, area, periodo, diasdisponiveis,anoEscolar,idade,contato)
         print(f"\nCadastro realizado: {aluno_obj.get_info()}")
         lista.append(aluno_obj)
-except ValueError: 
- print("Verifique se você inseriu valores validos para anoEscolar e Idade.")
 
     elif '2' in escolha or 'EMPRESA' in escolha.upper():
         print('''\nEscreva suas informações NESSA ORDEM:
@@ -36,7 +51,13 @@ Nome, Senha, Área, Período, Salário, Carga horária, CNPJ e as info do seu Su
         area = input('Área: ').strip()
         periodo = input('Período: ').strip()
         salario = input('Salário: ').strip()
-        cargaHoraria = input('Carga hóraria: ').strip()
+
+        #validação de carga horaria
+        try:
+            cargaHoraria = int(input('Carga hóraria: '))
+        except ValueError:
+            print(" Erro, insira numero valido")
+            return
         cnpj = input('CNPJ: ').strip()
         Snome = input('Supervisor nome: ').strip()
         Scontato = input('Supervisor contato: ').strip()
