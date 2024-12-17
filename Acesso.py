@@ -18,22 +18,26 @@ Nome, Senha, Área, Período, Dias Disponíveis, anoEscolar, idade, contato:''')
         periodo = input('Período: ').strip()
         diasdisponiveis = input('Dias Disponíveis: ').strip()
         anoEscolar = input('Ano escolar: ').strip()
-        idade = input('Idade: ').strip()
-        try:
-            idade = int(input('idade: '))
-        except ValueError:
-            print ("Insira um número inteiro válido para idade.")
-            return
-        finally:
-            print ("Fim do 'try except'. ") 
-        try:
-            contato = int(input('contato: '))
-        except ValueError:
-            print ("Insira um número de contato válido.")
-            return
-        finally:
-            print ("Fim do 'try except'. ") 
-
+        while True:    
+            try:
+                idade = int(input('idade: '))
+                if idade < 16:
+                    raise Exception ("A idade do aluno deve ser superior a 16 anos.")
+                break
+            except ValueError:
+               print ("Insira um número inteiro válido para idade.")
+               return
+            except:
+             print("A idade do aluno deve ser superior a 16 anos.")
+        while True:
+          try:
+             contato = int(input('contato: '))
+             break
+          except ValueError:
+                print ("Insira um número de contato válido.")
+          finally:
+               print("Fim.")
+        
         aluno_obj = Aluno(nome, senha, area, periodo, diasdisponiveis,anoEscolar,idade,contato)
         print(f"\nCadastro realizado: {aluno_obj.get_info()}")
         lista.append(aluno_obj)
@@ -46,22 +50,34 @@ Nome, Senha, Área, Período, Salário, Carga horária, CNPJ e as info do seu Su
         senha = input('Senha: ').strip()
         area = input('Área: ').strip()
         periodo = input('Período: ').strip()
-        try:
-            salario = int(input('Salário: '))
-        except ValueError:
-                print ("Insira um número inteiro válido para o Salário.")
-                return
+        while True:
+             try:
+                salario = int(input('Salário: '))
+                break
+             except ValueError:
+                 print ("Insira um número inteiro válido para o Salário.")
+        while True:
+            
+            try:
+                cargaHoraria = int(input('Carga horária: '))
+                if cargaHoraria < 150:
+                    raise Exception ("A carga horáriado aluno deve ser superior a 150 horas.")
+                break
+            except ValueError:
+                    print ("Insira um número inteiro válido para a Carga horária.")
+                    return
+            except:
+                print("A carga horáriado aluno deve ser superior a 150 horas.")
 
-        try:
-            cargaHoraria = int(input('Carga horária: '))
-        except ValueError:
-                print ("Insira um número inteiro válido para a Carga horária.")
-                return
-        try:
-            cnpj = int(input('CNPJ: '))
-        except ValueError:
-                print ("Insira um número inteiro válido para o CNPJ.")
-                return             
+        while True:
+            try:
+               cnpj = int(input('CNPJ: '))
+               break
+            except ValueError:
+                print ("Insira número inteiro válidos para o CNPJ.")
+            finally:
+                print("Fim.")
+                           
         Snome = input('Supervisor nome: ').strip()
         Scontato = input('Supervisor contato: ').strip()
         Scargo = input('Supervisor carg: ').strip()
@@ -86,3 +102,5 @@ def logon(lista):
                 return True
 
     print("\nUsuário ou senha incorretos.")
+
+       
