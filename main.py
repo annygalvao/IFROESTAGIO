@@ -128,5 +128,3 @@ Ações do Orientador
     else:
         print("\nfaça Login primeiro1")
 
-for colecao in colecoes_nativas:
-    tipo = type(colecao)
