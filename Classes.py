@@ -53,9 +53,19 @@ class Aluno(Usuario):
     
     def escolherArea(self):
         self.set_area()
-    
+
+#Adicionado raise 
+
     def adicionarPeriodo(self):
-        self.set_periodo()
+        try:
+            periodo = input("Escreva o periodo do aluno:"). strip()
+            if not periodo:
+                raise ValueError(" Esse periodo não pode ser vazio!")
+            self. set_periodo(periodo)
+        except ValueError as e:
+            print(f"Erro ao adicionar periodo: {e}")
+        finally:
+            print("Adicionar periodo concluido!")
 
     def adicionarDiasDisponiveis(self,diasAdicionais : str):
         self.diasdisponiveis = self.diasdisponiveis + diasAdicionais
@@ -63,7 +73,7 @@ class Aluno(Usuario):
     def get_info(self):
         return self._nome,self._area,self._periodo,self.diasdisponiveis,self.anoEscolar,self.idade,self.contato
     
-    # dependencia, aluno depende do seu orientador para receber sua nota
+    # dependencia, aluno depende do orientador para receber nota de seu relatorio
     def enviarRelatorio(self, orientadorNome):
         relatorio = input('''Escreva aqui seu relatório:
 ''')
@@ -90,8 +100,20 @@ class Orientador:
         self.termo = False
         self.relatorios = []
 
+#Raise 
+
     def assinar_termo(self):
-        choice = input('você concorda em assinar este termo? S ou N')
+        try:
+            choice = input('você concorda em assinar este termo? S ou N')
+            if choice.upper() == 'S':
+                self.termo = True
+                print('Termo assinado.')
+
+            else:
+                print('Termo não assinado')
+
+        except Exception as e:
+            print(f"Ops, ocorreu um problema ao assinar o termo: {e}")
 
         if "S" in choice.upper():
             self.termo = True
@@ -106,9 +128,21 @@ class Orientador:
         self.relatorios.append(relatorio)
         print('outro relatório para dar nota')
 
+# adicionado raise
 
     def avaliar_relatorio(self):
+        try:
+            avaliar_relatorio = input("Avalie o relatorio do aluno."). strip()
+            if not avaliar_relatorio:
+                raise ValueError("Avaliação não pode ser vazia!")
+            self.set_avaliaar_relatorio(avaliar_relatorio)
+        except ValueError as e:
+            print(f"Erro ao avaliar relatorio: {e}")
+        finally:
+            print("Adicionar avaliação concluida!")
+
         aluno = input('escreva o nome do aluno:')
+        
 
         for relatorio in self.relatorios:
             if aluno in relatorio[0]:
@@ -210,8 +244,7 @@ class Supervisor:
             print('termo assinado')
         else:
             print('termo não assinado')
-            
-#empresa está herdando da Classe usuario
+#empresa esta herdando da Classe usuario
 class Empresa(Usuario):
     def __init__(self, nome, senha, area, periodo, salario, data_inicial: int, data_final: int, carga_horaria: int, cnpj: int, supervisor_nome, supervisor_contato, supervisor_cargo):
         super().__init__(nome, senha, area, periodo)
@@ -227,8 +260,18 @@ class Empresa(Usuario):
         return (f'Empresa: {self._nome}, Área: {self._area}, Período: {self._periodo}, '
                 f'Salário Oferecido: {self.salario}, Supervisor: {self.supervisor.nome}')
 
+# Raise
     def criar_senha(self, senha):
-        self.set_senha(senha)
+
+        try: 
+            senha = input("Digite a senha da empresa:")
+            if not senha:
+                raise ValueError("Senha não pode ser vazio!")
+            self.set_senha(senha)
+        except ValueError as e:
+            print(f"Erro ao adicionar senha {e}")
+        finally:
+            print("Tentativa de adicionar senha finalizada!")
 
     def adicionar_nome(self, nome):
         self.set_nome(nome)
