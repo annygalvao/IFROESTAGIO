@@ -5,7 +5,6 @@ from Acesso import logon, cadastro
 from Classes import Empresa, Aluno, DepEx, Orientador
 
 # Inicialização da lista DB com instâncias corretas
-
 DB = [
     Empresa('LuminaEletro', 'iluminatudo', 'eletrotécnica', 'tarde', '3000', 202401, 202412, 20, 123456789, "Carlos", 11987654321, "Engenheiro"),
     Empresa('SublimeVolt', 'senhatop', 'eletrotécnica', 'manhã', '3500', 202401, 202412, 20, 987654321, "Maria", 11912345678, "Engenheira"),
@@ -22,7 +21,6 @@ DB = [
 ]
 
 # Instâncias adicionais
-
 depex = DepEx("Coordenação de Extensão", "Chefe de Extensão", 11987651234, "depex@ifro.edu.br")
 orientador = Orientador("Dr. João", "Informática", 11912344321)
 
@@ -54,7 +52,6 @@ Menu Principal (digite o número da ação)
         aluno = next((a for a in DB if isinstance(a, Aluno) and a.get_nome() == aluno_nome), None)
         if aluno:
             print('''
-            
 Ações do Aluno
 --------------
 1 - Enviar Relatório ao Orientador
@@ -75,7 +72,6 @@ Ações do Aluno
         empresa = next((e for e in DB if isinstance(e, Empresa) and e.get_nome() == empresa_nome), None)
         if empresa:
             print('''
-
 Ações da Empresa
 ----------------
 1 - Ver informações da Empresa
@@ -95,7 +91,6 @@ Ações da Empresa
 
     elif choice == '5' and Permission:
         print('''
-        
 Ações do DepEx
 --------------
 1 - Fornecer Formulário
@@ -114,7 +109,6 @@ Ações do DepEx
 
     elif choice == '6' and Permission:
         print('''
-        
 Ações do Orientador
 -------------------
 1 - Avaliar Relatório de Aluno
@@ -133,3 +127,6 @@ Ações do Orientador
         break
     else:
         print("\nfaça Login primeiro1")
+
+for colecao in colecoes_nativas:
+    tipo = type(colecao)
