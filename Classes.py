@@ -275,3 +275,14 @@ class Empresa(Usuario):
 
     def adicionar_nome(self, nome):
         self.set_nome(nome)
+
+# Lista, tupla, conjunto, dicionário, string e range
+
+[
+    [1, 2, 3, 4],      
+    (1, 2, 3, 4),      
+    {1, 2, 3, 4},      
+    {"nome": "Thayna", "idade": 16},  
+    "Python",          
+    range(5)          
+]
