@@ -12,15 +12,16 @@ def cadastro(lista):
 Nome, Senha, Área, Período, Dias Disponíveis, anoEscolar, idade, contato:''')
 
         nome = input('Nome: ').strip()
-
         #validação de senha
-        try:
-            senha = int(input('Senha: '))
-        except ValueError:
-            print("Erro, insira numeros inteiros")
-            return
-        finally:
-            print("Fim do try exception, continue")
+        while True:
+
+            try:
+              senha = int(input('Senha: '))
+            except ValueError:
+               print("Erro, insira numeros inteiros")
+            else: 
+                break
+            
 
         area = input('Área: ').strip()
         periodo = input('Período: ').strip()
@@ -30,12 +31,22 @@ Nome, Senha, Área, Período, Dias Disponíveis, anoEscolar, idade, contato:''')
 
         #validação de contato 
         try:
-            contato = int(input('Contato: '))
-        except ValueError:
-            print ("Erro, insira no máximo oito dígitos numéricos")
-            return
-        finally:
-            print("EEE, é o fim do try except!! Continue")
+            
+            
+            while True: 
+                n = []
+                contato = int(input('Contato: '))
+                txt = str(contato)
+
+                for c in txt:
+                    n.append(c)
+
+                if len(n) >8 :
+                    print ("Erro, insira no maximo oito dígitos numéricos")
+                else: 
+                    break
+        finally: 
+            print("EEE, é o fim do try except!!")
 
         aluno_obj = Aluno(nome, senha, area, periodo, diasdisponiveis,anoEscolar,idade,contato)
         print(f"\nCadastro realizado: {aluno_obj.get_info()}")
