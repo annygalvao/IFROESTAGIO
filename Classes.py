@@ -228,4 +228,3 @@ class Empresa(Usuario):
 
     def adicionar_nome(self, nome):
         self.set_nome(nome)
-
