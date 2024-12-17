@@ -44,7 +44,7 @@ Menu Principal (digite o número da ação)
     choice = input('Escolha uma opção: ').strip()
 
     if choice == '1':
-        cadastro(DB)
+         cadastro(DB)
     elif choice == '2':
         Permission = logon(DB)
     elif choice == '3' and Permission:
