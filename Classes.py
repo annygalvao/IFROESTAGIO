@@ -56,14 +56,15 @@ class Aluno(Usuario):
 
 #Adicionado raise 
 
-    def adicionarPeriodo(self):
+    def adicionarPeriodo(self): 
+        
         try:
             periodo = input("Escreva o periodo do aluno:"). strip()
             if not periodo:
                 raise ValueError(" Esse periodo não pode ser vazio!")
             self. set_periodo(periodo)
         except ValueError as e:
-            print(f"Erro ao adicionar periodo: {e}")
+            print("Erro ao adicionar periodo:")
         finally:
             print("Adicionar periodo concluido!")
 
@@ -71,7 +72,7 @@ class Aluno(Usuario):
         self.diasdisponiveis = self.diasdisponiveis + diasAdicionais
 
     def get_info(self):
-        return self._nome,self._area,self._periodo,self.diasdisponiveis,self.anoEscolar,self.idade,self.contato
+        return self._nome, self._senha, self._area,self._periodo,self.diasdisponiveis,self.anoEscolar,self.idade,self.contato
     
     # dependencia, aluno depende do orientador para receber nota de seu relatorio
     def enviarRelatorio(self, orientadorNome):
@@ -113,7 +114,7 @@ class Orientador:
                 print('Termo não assinado')
 
         except Exception as e:
-            print(f"Ops, ocorreu um problema ao assinar o termo: {e}")
+            print("Ops, ocorreu um problema ao assinar o termo: ")
 
         if "S" in choice.upper():
             self.termo = True
@@ -131,13 +132,14 @@ class Orientador:
 # adicionado raise
 
     def avaliar_relatorio(self):
+
         try:
-            avaliar_relatorio = input("Avalie o relatorio do aluno."). strip()
+            avaliar_relatorio = input("Avalie o relatorio do aluno.")
             if not avaliar_relatorio:
                 raise ValueError("Avaliação não pode ser vazia!")
             self.set_avaliaar_relatorio(avaliar_relatorio)
         except ValueError as e:
-            print(f"Erro ao avaliar relatorio: {e}")
+            print("Erro ao avaliar relatorio: ")
         finally:
             print("Adicionar avaliação concluida!")
 
@@ -263,26 +265,21 @@ class Empresa(Usuario):
 # Raise
     def criar_senha(self, senha):
 
+     while True:
         try: 
-            senha = input("Digite a senha da empresa:")
-            if not senha:
-                raise ValueError("Senha não pode ser vazio!")
-            self.set_senha(senha)
-        except ValueError as e:
-            print(f"Erro ao adicionar senha {e}")
+            senha = int(input("Digite a senha da empresa:"))
+            if senha:
+                raise Exception("Senha não pode ser vazio!")
+            break
+        except ValueError:
+            print("Erro ao adicionar senha.")
+            return
+        except: 
+            print("Senha não pode ser vazio!")
         finally:
             print("Tentativa de adicionar senha finalizada!")
 
     def adicionar_nome(self, nome):
         self.set_nome(nome)
 
-# Lista, tupla, conjunto, dicionário, string e range
 
-[
-    [1, 2, 3, 4],      
-    (1, 2, 3, 4),      
-    {1, 2, 3, 4},      
-    {"nome": "Thayna", "idade": 16},  
-    "Python",          
-    range(5)          
-]
