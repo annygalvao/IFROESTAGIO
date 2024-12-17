@@ -126,5 +126,5 @@ Ações do Orientador
         print("Saindo do sistema. Obrigado!")
         break
     else:
-        print("\nfaça Login primeiro1")
+        print("\nfaça Login primeiro")
 
