@@ -32,8 +32,6 @@ Nome, Senha, Área, Período, Dias Disponíveis, anoEscolar, idade, contato:''')
             except ValueError:
                 print ("Ocorreu um erro! Insira um número inteiro válido.")
             
-        #finally: 
-        #print ("O 'try except' acabou, tente novamente! ")
 
         aluno_obj = Aluno(nome, senha, area, periodo, diasdisponiveis,anoEscolar,idade,contato)
         print(f"\nCadastro realizado: {aluno_obj.get_info()}")
@@ -93,4 +91,3 @@ def logon(lista):
                 return True
 
     print("\nUsuário ou senha incorretos.")
-
